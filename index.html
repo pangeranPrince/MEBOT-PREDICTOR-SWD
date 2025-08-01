@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MEBOT PREDICTOR</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="marquee-container" class="hidden">
+        <p>📢Selamat Datang di MEBOT - PREDICTOR | Bot Prediksi & Result | Semoga Harimu Menyenangkan Clay</p>
+    </div>
+
+    <div id="login-screen" class="screen">
+        <div class="form-container">
+            <h2>MEBOT LOGIN</h2> 
+            <p>Silakan masuk untuk melanjutkan</p>
+            <input type="text" id="login-userid" placeholder="UserID">
+            <div class="password-container">
+                <input type="password" id="login-password" placeholder="Password">
+                <i class="fas fa-eye password-toggle-icon" id="toggle-login-password"></i>
+            </div>
+            <div class="remember-me-container"><input type="checkbox" id="remember-me"><label for="remember-me">Ingat Akun</label></div>
+            <button id="btn-login">Login</button>
+            <p id="login-error" class="error-message hidden"></p>
+            <p class="switch-screen-link">Belum punya akun? <a href="#" id="link-to-register">Daftar di sini</a></p>
+        </div>
+    </div>
+
+    <div id="register-screen" class="screen hidden">
+        <div class="form-container" style="width: 450px;">
+            <h2>Pendaftaran Akun Baru</h2>
+            <input type="text" id="register-userid" placeholder="Buat UserID Anda">
+            <div class="password-container">
+                <input type="password" id="register-password" placeholder="Buat Password Anda">
+                <i class="fas fa-eye password-toggle-icon" id="toggle-register-password"></i>
+            </div>
+            <div class="password-container">
+                <input type="password" id="register-confirm-password" placeholder="Konfirmasi Password Anda">
+                <i class="fas fa-eye password-toggle-icon" id="toggle-register-confirm-password"></i>
+            </div>
+            <input type="email" id="register-gmail" placeholder="Masukkan Gmail Anda">
+            <input type="text" id="register-whatsapp" placeholder="Masukkan No. WhatsApp Anda">
+            
+            <p class="important-note" style="text-align: left; margin-top: 15px; margin-bottom: 5px;">Sebelum memilih paket, hubungi CS untuk memastikan ketersediaan slot.</p>
+            
+            <div class="subscription-options">
+                <label>
+                    <input type="radio" name="duration" value="1" checked>
+                    1 Bulan - <span class="price-discount">Rp 160.000</span> <s class="price-original">Rp 200.000</s> (Diskon 20%)
+                </label>
+                <label>
+                    <input type="radio" name="duration" value="3">
+                    3 Bulan - <span class="price-discount">Rp 350.000</span> <s class="price-original">Rp 500.000</s> (Diskon 30%)
+                </label>
+                <label>
+                    <input type="radio" name="duration" value="12">
+                    1 Tahun - <span class="price-discount">Rp 687.500</span> <s class="price-original">Rp 1.250.000</s> (Diskon 45%)
+                </label>
+            </div>
+
+            <button id="btn-register">Daftar & Lanjut Pembayaran</button>
+            <p id="register-error" class="error-message hidden"></p>
+            <p class="switch-screen-link">Sudah punya akun? <a href="#" id="link-to-login-from-register">Login di sini</a></p>
+        </div>
+    </div>
+    
+    <div id="main-app" class="hidden">
+        <div id="app-wrapper">
+            <div id="nav-bar">
+                <button id="nav-me" class="nav-button active" title="ME BOT">
+                    <img src="./me-icon.png" alt="ME Icon">
+                </button>
+            </div>
+            
+            <div id="content-area">
+                <div id="me-view" class="platform-view">
+                    <div class="left-panel">
+                        <div class="me-bot-control-panel">
+                            <h2>Kontrol Bot Prediksi</h2>
+                            <input type="text" id="groupNamePrediksi" placeholder="Nama Grup Wajib Sama Persis">
+                            <div class="path-container">
+                                <input type="text" id="excelPathPrediksi" placeholder="Path File Excel Prediksi" readonly>
+                                <button id="browseExcelPrediksi">Cari...</button>
+                            </div>
+                            <div class="button-group">
+                                <button id="startPrediksi">START</button>
+                                <button id="stopPrediksi">STOP</button>
+                                <button id="resetPrediksi">RESET</button>
+                            </div>
+                            <div id="statusPrediksi" class="status-indicator">Status: Stopped</div>
+                            <div id="qrPrediksi" class="qr-container hidden"></div>
+                            <textarea id="logPrediksi" class="log-area" readonly placeholder="Aktivitas bot prediksi akan muncul di sini..."></textarea>
+                        </div>
+                    </div>
+                
+                    <div class="right-panel">
+                        <div class="me-bot-control-panel">
+                            <h2>Kontrol Bot Result</h2>
+                            
+                            <div class="input-button-group">
+                                <input type="text" id="groupNameResult" placeholder="Nama Grup WA Result">
+                                <button id="btn-settings-celebration" class="btn-settings" title="Pengaturan Selebrasi"><i class="fas fa-gift"></i> Selebrasi</button>
+                                <button id="btn-settings-jp" class="btn-settings" title="Pengaturan Format JP"><i class="fas fa-trophy"></i> Format JP</button>
+                            </div>
+
+                            <div class="path-container">
+                                <input type="text" id="excelPathResult" placeholder="Path File Excel Result" readonly>
+                                <button id="browseExcelResult">Cari...</button>
+                            </div>
+                            <div class="button-group">
+                                <button id="startResult">START</button>
+                                <button id="stopResult">STOP</button>
+                                <button id="resetResult">RESET</button>
+                            </div>
+                            <div id="statusResult" class="status-indicator">Status: Stopped</div>
+                            <div id="qrResult" class="qr-container hidden"></div>
+                            <textarea id="logResult" class="log-area" readonly placeholder="Aktivitas bot result akan muncul di sini..."></textarea>
+                        </div>
+                    </div>
+
+                    <div id="settings-modal" class="modal-overlay hidden">
+                        <div class="modal-content" style="width: 550px;">
+                            <h3>Pengaturan Kalimat Selebrasi JP</h3>
+                            <p style="color: var(--text-muted); margin-top: -10px; margin-bottom: 15px;">
+                                Masukkan kalimat selebrasi Anda di bawah ini, pisahkan setiap kalimat dengan baris baru (Enter). Bot akan memilih salah satunya secara acak saat JP.
+                            </p>
+                            <textarea id="celebration-text" class="log-area" style="height: 250px; font-family: sans-serif; color: var(--text-color);" placeholder="Contoh:&#10;Selamat JP beibs! Tembus maning👿&#10;Gokil🔥 JP lagi nih, lanjut gas!&#10;Mantap jiwa! Angka tembus boss🤩🤩"></textarea>
+                            <div class="modal-buttons">
+                                <button id="btn-cancel-settings">Batal</button>
+                                <button id="btn-save-settings">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="jp-settings-modal" class="modal-overlay hidden">
+                        <div class="modal-content" style="width: 650px;">
+                            <h3>Pengaturan Format Pesan JP</h3>
+                            <p style="color: var(--text-muted); margin-top: -10px; margin-bottom: 15px;">
+                                Ubah format pesan yang dikirim bot saat mendeteksi JP. Gunakan `{label}` untuk memasukkan nama prediksi (e.g., BBFS 7D). Gunakan `{matches}` untuk angka CB yang cocok.
+                            </p>
+                            <div class="jp-settings-grid">
+                                <div class="jp-setting-item"><label for="jp-bbfs4d_twin">BBFS 4D (Poltar/Twin)</label><input type="text" id="jp-bbfs4d_twin"></div>
+                                <div class="jp-setting-item"><label for="jp-bbfs4d">BBFS 4D</label><input type="text" id="jp-bbfs4d"></div>
+                                <div class="jp-setting-item"><label for="jp-bbfs3d_twin">BBFS 3D (Poltar/Twin)</label><input type="text" id="jp-bbfs3d_twin"></div>
+                                <div class="jp-setting-item"><label for="jp-bbfs3d">BBFS 3D</label><input type="text" id="jp-bbfs3d"></div>
+                                <div class="jp-setting-item"><label for="jp-bbfs2d">BBFS 2D</label><input type="text" id="jp-bbfs2d"></div>
+                                <div class="jp-setting-item"><label for="jp-cb">Colok Bebas</label><input type="text" id="jp-cb"></div>
+                                <div class="jp-setting-item"><label for="jp-2d_lurus">2D Lurus</label><input type="text" id="jp-2d_lurus"></div>
+                                <div class="jp-setting-item"><label for="jp-2d_bb">2D BB</label><input type="text" id="jp-2d_bb"></div>
+                                <div class="jp-setting-item"><label for="jp-d4_lurus">Sniper 432D Lurus</label><input type="text" id="jp-d4_lurus"></div>
+                                <div class="jp-setting-item"><label for="jp-d4_poltar_4d">Sniper 4D (Poltar/Twin)</label><input type="text" id="jp-d4_poltar_4d"></div>
+                                <div class="jp-setting-item"><label for="jp-d4_4d">Sniper 4D (Bebas)</label><input type="text" id="jp-d4_4d"></div>
+                                <div class="jp-setting-item"><label for="jp-d4_poltar_3d">Sniper 3D (Poltar/Twin)</label><input type="text" id="jp-d4_poltar_3d"></div>
+                                <div class="jp-setting-item"><label for="jp-d4_3d">Sniper 3D (Bebas)</label><input type="text" id="jp-d4_3d"></div>
+                                <div class="jp-setting-item"><label for="jp-d4_2d">Sniper 2D</label><input type="text" id="jp-d4_2d"></div>
+                            </div>
+                            <div class="modal-buttons">
+                                <button id="btn-cancel-jp-settings">Batal</button>
+                                <button id="btn-save-jp-settings">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="payment-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="width: 480px; text-align: center;">
+            <h3>Pendaftaran Berhasil!</h3>
+            <p>Silakan transfer <strong>tepat</strong> sejumlah nominal di bawah ini:</p>
+            
+            <div class="payment-details" style="font-size: 1.2rem; padding: 20px;">
+                <strong>Total Pembayaran:</strong><br>
+                <span id="payment-amount" style="font-size: 2rem; color: var(--yellow); font-weight: bold;"></span>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">(Jumlah ini sudah termasuk 3 digit kode unik untuk verifikasi)</p>
+            </div>
+
+            <p><strong>Transfer ke rekening berikut:</strong></p>
+            <div class="payment-details" style="font-size: 1.1rem;">
+                <strong>DANA: 0821-6430-6883</strong><br>
+                <strong>a/n BUDI HxxxxxxxxxH</strong>
+            </div>
+            
+            <p class="important-note">PENTING: Setelah transfer, kirim bukti pembayaran beserta UserID Anda ke CS kami di WhatsApp: <strong>0851-2106-9603</strong> untuk aktivasi akun.</p>
+            
+            <div class="modal-buttons" style="justify-content: center; margin-top: 10px;">
+                <button id="btn-close-payment-modal">Saya Mengerti</button>
+            </div>
+        </div>
+    </div>
+    <div id="update-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="width: 450px; text-align: center;">
+            <h3 id="update-title">Pembaruan Tersedia!</h3>
+            <p id="update-message" style="margin-bottom: 25px;">Versi baru MEBOT telah diunduh.</p>
+            <div class="modal-buttons" style="justify-content: center;">
+                <button id="btn-update-later" style="background-color: #6c757d;">Nanti</button>
+                <button id="btn-update-now" style="background-color: var(--blue);">Update & Restart</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./renderer.js"></script>
+</body>
+</html>

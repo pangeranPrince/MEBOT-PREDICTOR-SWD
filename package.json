@@ -1,0 +1,52 @@
+{
+  "name": "mebot-predictor",
+  "version": "2.3.1",
+  "description": "Aplikasi MEBOT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --publish always"
+  },
+  "author": "pangeranPrince",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "electron-updater": "^6.2.1",
+    "keytar": "^7.9.0",
+    "node-machine-id": "^1.1.12",
+    "node-telegram-bot-api": "^0.66.0",
+    "puppeteer": "^24.15.0",
+    "qrcode": "^1.5.3",
+    "whatsapp-web.js": "^1.31.0"
+  },
+  "devDependencies": {
+    "electron": "^31.2.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "mebotofficial@gmail.com",
+    "productName": "MEBOT",
+    "files": [
+      "**/*",
+      "!dist/",
+      "!functions/",
+      "!*.local",
+      "node_modules/puppeteer/.local-chromium/**/*"
+    ],
+    "asarUnpack": [
+      "**/node_modules/puppeteer/.local-chromium/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "logo.ico"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "pangeranPrince",
+      "repo": "mebot"
+    }
+  }
+}
